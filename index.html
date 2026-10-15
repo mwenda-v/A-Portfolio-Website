@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
   <title>Alex Wanja | Social Media Manager</title>
   
 <style>
@@ -535,7 +538,7 @@ body {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
   font-size: 1.4rem;
-  color: solid var(--primary-green);;               /* blue like your sample; use var(--primary-green) to match the site */
+  color: var(--primary-green);
 }
 
 .more-link span {
@@ -591,7 +594,7 @@ body {
   font-size: 1rem;
 }
 
-.contact.btn.primary {
+.contact .btn.primary {
   background: white;
   color: var(--primary-green);
   padding: 12px 24px;
@@ -601,7 +604,7 @@ body {
   transition: 0.3s ease;
 }
 
-.contact.btn.primary:hover {
+.contact .btn.primary:hover {
   background: var(--light-blue);
   color: var(--text-dark);
 }
@@ -650,13 +653,94 @@ body {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
   z-index: 900;   /* below the modal (1000), above everything else */
 }
+
+/* =========================================================
+   MOBILE FIXES
+   ========================================================= */
+img { max-width: 100%; height: auto; }
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.btn.primary { border: 2px solid var(--primary-green); }
+.about-text .btn { margin-bottom: 10px; }
+.before-img { box-sizing: border-box; }   /* border no longer pushes the image wider than its column */
+.navbar.responsive { position: relative; z-index: 950; }
+.navbar.responsive .nav-links { margin: 0; padding: 0; }
+.contact-info p { overflow-wrap: anywhere; }
+
+/* Tablets and phones */
+@media (max-width: 900px) {
+
+  /* HERO: stack vertically, photo on top */
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    min-height: auto;
+    padding: 40px 24px 50px;
+    gap: 28px;
+  }
+  .hero-text { max-width: 100%; }
+  .hero-quote { margin: 0 auto 26px; }
+  .hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .hero-buttons .btn { margin-right: 0; }
+  .social-icons { justify-content: center; }
+  .hero-image img { width: min(100%, 340px); border-radius: 36px; }
+
+  /* ABOUT: stack */
+  .section-container { margin-top: 0; }
+  .about { padding: 50px 24px; }
+  .about-container { flex-direction: column; gap: 28px; }
+  .about-image { width: 100%; text-align: center; }
+  .about-image img { width: min(100%, 340px); border-radius: 32px; }
+  .about-text { max-width: 100%; }
+
+  /* SERVICES: one column, tools panel no longer sticky */
+  .services { padding: 50px 24px; }
+  .services-layout { grid-template-columns: 1fr; gap: 30px; }
+  .tools-panel { position: static; }
+
+  /* PORTFOLIO */
+  .project-title { font-size: 2rem; }
+  .details p { font-size: 1rem; }
+  .details ul { font-size: 1rem; line-height: 1.7; }
+  .more-link { font-size: 1.2rem; }
+
+  /* CONTACT */
+  .contact { padding: 50px 24px 90px; }
+  .contact-container { flex-direction: column; gap: 24px; }
+  .whatsapp-icon { display: none; }          /* the floating button already does this job */
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .service-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: repeat(3, 1fr); }
+  .tool-logo { height: 64px; }
+  .details-content { padding: 20px; }
+  .whatsapp-float { bottom: 16px; right: 16px; width: 54px; height: 54px; }
+}
+
+/* Mobile menu: dropdown opens when .open is added by the script */
+@media (max-width: 768px) {
+  .navbar.responsive { padding: 14px 20px; }
+  .navbar.responsive .nav-links { top: 100%; z-index: 960; box-sizing: border-box; gap: 16px; }
+  .navbar.responsive .nav-links.open { display: flex; }
+  .navbar.responsive .menu-toggle { padding: 4px 8px; }
+}
 </style>
 </head>
 <body>
   <!-- Navigation -->
  <div class="navbar responsive">
   <div class="logo">AW</div>
-  <div class="menu-toggle">&#9776;</div>
+  <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false">&#9776;</div>
   <ul class="nav-links">
     <li><a href="#index">Home</a></li>
     <li><a href="#about">About</a></li>
@@ -712,7 +796,7 @@ Explore my work to see how insight-led campaigns build engaged communities and m
 <div id="about-details" class="details-modal">
   <div class="details-content">
     <h2>My Credentials</h2>
-    <img src="certificate.jpeg" alt="Certificate" class="certificate">
+    <img src="Certificate.jpeg" alt="Certificate" class="certificate">
     <p>View my CV below:</p>
     <a href="Alex_Kangethe_Wanja_Revamped_CV.pdf" download class="btn secondary">Download CV</a>
     <button onclick="closeDetails()" class="btn primary">Close</button>
@@ -886,23 +970,22 @@ Explore my work to see how insight-led campaigns build engaged communities and m
           <li>Brand visibility and engagement</li>
           <li>50% increase in DMs and comments</li>
         </ul>
-      </div>
+      </div><!-- /details -->
+    </div><!-- /project-body -->
+  </div><!-- /project -->
 
-        <div class="slide-nav">
-          <button type="button" class="more-link back" data-go="0">
-            <svg viewBox="0 0 50 12" width="50" height="12" aria-hidden="true">
-              <path d="M49 6 H4 M10 1 L3 6 L10 11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>back</span>
-          </button>
-        </div>
-      </div>
+  <div class="slide-nav">
+    <button type="button" class="more-link back" data-go="0">
+      <svg viewBox="0 0 50 12" width="50" height="12" aria-hidden="true">
+        <path d="M49 6 H4 M10 1 L3 6 L10 11" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>back</span>
+    </button>
+  </div>
+</div><!-- /slide 2 -->
 
-    </div>
-  </div>
-    </div>
-  </div>
-        </div>
+    </div><!-- /slides -->
+  </div><!-- /slider -->
 </section>
 
 <!-- Contact Section -->
@@ -992,6 +1075,17 @@ document.querySelectorAll(".more-link").forEach(btn => {
 
 // start with only slide 1 interactive
 slideItems.forEach((s, idx) => s.toggleAttribute("inert", idx !== 0));
+
+/* Mobile menu toggle */
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+function setMenu(open) {
+  navLinks.classList.toggle("open", open);
+  menuToggle.setAttribute("aria-expanded", String(open));
+}
+menuToggle.addEventListener("click", () => setMenu(!navLinks.classList.contains("open")));
+menuToggle.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setMenu(!navLinks.classList.contains("open")); } });
+navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
 </script>
 <a href="https://wa.me/254757798698" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 32 32" width="30" height="30" fill="currentColor" aria-hidden="true">
