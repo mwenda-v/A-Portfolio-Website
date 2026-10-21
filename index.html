@@ -1073,9 +1073,22 @@ Explore my work to see how insight-led campaigns build engaged communities and m
       </article>
     </div>
 
-    <!-- Review form -->
+   <!-- Review form -->
+<div hidden>
+  <form name="reviews" netlify netlify-honeypot="_gotcha">
+    <input type="hidden" name="form-name" value="reviews">
+    <input type="text" name="name">
+    <input type="text" name="brand">
+    <input type="text" name="rating">
+    <textarea name="message"></textarea>
+    <input type="text" name="_gotcha">
+  </form>
+</div>
+
+<!-- Your actual visible form -->
     <form class="review-form" id="reviewForm" name="reviews" method="POST" data-netlify="true" netlify-honeypot="_gotcha">
   <input type="hidden" name="form-name" value="reviews">
+
       <h3>Worked with me? Leave a review</h3>
 
       <label for="rName">Your name</label>
